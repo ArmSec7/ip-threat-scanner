@@ -1,27 +1,31 @@
-# 🛡️ Threat Intelligence IP Scanner (VirusTotal API)
+# 🛡️ IP Threat Intelligence Scanner
 
-Este projeto é um script de automação em Python desenvolvido para auxiliar analistas de Cibersegurança e SOC na triagem rápida de **Indicadores de Comprometimento (IoCs)**. 
+> Automação em Python para triagem massiva de Indicadores de Comprometimento (IoC) via VirusTotal API v3.
 
-O script consulta uma lista de endereços IP na API do VirusTotal, verifica sua reputação em mais de 70 motores de análise e exporta um relatório detalhado em CSV.
+![Python](https://img.shields.io/badge/Python-3.10+-blue?style=for-the-badge&logo=python&logoColor=white)
+![Security+](https://img.shields.io/badge/CompTIA-Security%2B-red?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Desenvolvimento-green?style=for-the-badge)
 
-## 🚀 Funcionalidades
-- **Análise em lote:** Processa múltiplos IPs de uma vez através de um arquivo `.txt`.
-- **Segurança de Credenciais:** Utiliza variáveis de ambiente (`.env`) para proteger a API Key.
-- **Rate Limiting:** Controle automático de requisições para respeitar os limites da API gratuita.
-- **Relatório Automático:** Gera um arquivo `.csv` com o veredito de cada IP (Malicioso, Suspeito, Limpo).
-
-## 🛠️ Tecnologias Utilizadas
-- Python 3.x
-- Requests (Manipulação de APIs HTTP)
-- Python-dotenv (Gestão de variáveis de ambiente)
-- CSV (Estruturação de dados de saída)
-
-## 📖 Como usar
-1. Clone este repositório.
-2. Instale as dependências: `pip install -r requirements.txt`.
-3. Crie um arquivo `.env` e adicione sua `VT_API_KEY`.
-4. Coloque os IPs desejados em `ips.txt`.
-5. Execute: `python vt_scanner.py`.
+Em operações de **SOC (Security Operations Center)**, a análise manual de centenas de logs é inviável. Este script automatiza a consulta de reputação de IPs, permitindo que o analista foque na resposta ao incidente, não na coleta de dados.
 
 ---
-*Projeto desenvolvido como parte dos meus estudos para a certificação CompTIA Security+.*
+
+## 🛠️ Funcionalidades
+- **Triagem em Lote:** Processa múltiplos endereços IPv4 simultaneamente.
+- **Veredito em Tempo Real:** Consulta mais de 70 motores de análise (Kaspersky, Sophos, CrowdStrike, etc).
+- **Gestão de Rate Limit:** Algoritmo de espera inteligente para usuários da API gratuita (4 requisições/min).
+- **Relatórios Estruturados:** Exportação direta para CSV, pronto para ingestão em SIEMs ou Excel.
+- **Segurança de Credenciais:** Implementação de variáveis de ambiente para proteção de API Keys.
+
+---
+
+## 📂 Estrutura do Projeto
+```text
+ip-threat-scanner/
+├── .env                # Chaves de API (não incluído no repositório)
+├── .env.example        # Modelo para configuração de chaves
+├── .gitignore          # Proteção de arquivos sensíveis
+├── README.md           # Documentação técnica
+├── requirements.txt    # Dependências do projeto
+├── ips.txt             # Lista de IPs para scan
+└── vt_scanner.py       # Script principal
